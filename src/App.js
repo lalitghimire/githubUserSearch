@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const App = () => {
-    // event handlers
+    const [searchName, setSearchName] = useState('')
+
+    // event handler for button click
     const handleClick = () => {
         console.log('button is clicked')
+        console.log(searchName)
     }
 
+    // event handler for search box
     const handleSearch = (e) => {
         console.log(e.target.value)
+        setSearchName(e.target.value)
     }
     return (
         <div>

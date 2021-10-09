@@ -1,0 +1,9 @@
+div {
+    text-align: center;
+    color: purple;
+}
+.liststyle {
+    display: table;
+    margin: auto;
+    text-align: left;
+}

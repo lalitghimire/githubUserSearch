@@ -1,5 +1,7 @@
-import axios from 'axios'
 import React, { useState } from 'react'
+import axios from 'axios'
+import SearchForm from './components/SearchForm'
+import RepoList from './components/RepoList'
 
 const App = () => {
     const [searchName, setSearchName] = useState('')
@@ -25,33 +27,9 @@ const App = () => {
             })
     }
 
-    // const displayInfo = () => {
-    //     if (repo.length === 0) {
-    //         return null
-    //     } else return repo.map((repo) => <p key={repo.id}>{repo.name}</p>)
-    // }
-
     //  display error message
     const errorDisplay = null ? !errorMsg : <div>{errorMsg}</div>
 
-    // display all the repos of the searched user
-    const allRepos = null
-        ? repo.length === 0
-        : repo.map((repo) => (
-              <ul key={repo.id}>
-                  <li>
-                      {repo.name}
-                      <a
-                          href={`${repo.svn_url}`}
-                          rel=' noreferrer'
-                          target='_blank'
-                      >
-                          {' '}
-                          link{' '}
-                      </a>
-                  </li>
-              </ul>
-          ))
     // event handler for search box
     const handleSearch = (e) => {
         // console.log(e.target.value)
@@ -60,28 +38,15 @@ const App = () => {
 
     console.log(repo)
     return (
-        <div
-            style={{
-                textAlign: 'center',
-                color: 'purple',
-            }}
-        >
+        <div>
             <h1>Github profile search</h1>
-            <form onSubmit={handleSubmit}>
-                <h3> Enter github username below</h3>
-                <input placeholder='username..' onChange={handleSearch} />
-                <button type='submit'>search</button>
-            </form>
+            <h3> Enter github username below</h3>
+            <SearchForm
+                handleSearch={handleSearch}
+                handleSubmit={handleSubmit}
+            />
             <h3>{errorDisplay}</h3>
-            <div
-                style={{
-                    display: 'table',
-                    margin: 'auto',
-                    textAlign: 'left',
-                }}
-            >
-                {allRepos}
-            </div>
+            <RepoList repo={repo} />
         </div>
     )
 }

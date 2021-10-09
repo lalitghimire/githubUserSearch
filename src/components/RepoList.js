@@ -1,5 +1,6 @@
 import React from 'react'
 
+//compont to display the list of github repositories
 const RepoList = ({ repo }) => {
     const allRepos = null
         ? repo.length === 0

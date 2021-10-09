@@ -11,8 +11,6 @@ const App = () => {
     // event handler for form submission
     const handleSubmit = (event) => {
         event.preventDefault()
-        // console.log('button clicked')
-        // console.log('search name is ', searchName)
         axios
             .get(`https://api.github.com/users/${searchName}/repos`)
             .then((response) => {

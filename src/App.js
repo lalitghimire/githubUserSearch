@@ -18,7 +18,8 @@ const App = () => {
             })
             .catch((error) => {
                 console.log('invalid username', error.message)
-                setErrorMsg(`user not found`)
+                setErrorMsg(`User not found. Check username`)
+                setRepo([])
                 setTimeout(() => {
                     setErrorMsg(null)
                 }, 5000)

@@ -6,4 +6,5 @@ div {
     display: table;
     margin: auto;
     text-align: left;
+    background-color: lightblue;
 }

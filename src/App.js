@@ -7,15 +7,19 @@ const App = () => {
     const [searchName, setSearchName] = useState('')
     const [repo, setRepo] = useState([])
     const [errorMsg, setErrorMsg] = useState('')
+    const [isLoading, setisLoading] = useState(false)
 
     // event handler for form submission
     const handleSubmit = (event) => {
         event.preventDefault()
+        setisLoading(true)
         axios
             .get(`https://api.github.com/users/${searchName}/repos`)
             .then((response) => {
                 setRepo(response.data)
+                setisLoading(false)
             })
+
             .catch((error) => {
                 console.log('invalid username', error.message)
                 setErrorMsg(`User not found. Check username`)
@@ -27,7 +31,9 @@ const App = () => {
     }
 
     //  display error message
-    const errorDisplay = null ? !errorMsg : <div>{errorMsg}</div>
+    const errorDisplay = !errorMsg ? null : <div>{errorMsg}</div>
+    // display loading message
+    const loader = isLoading && !errorMsg ? <div>...loading</div> : null
 
     // event handler for search box
     const handleSearch = (e) => {
@@ -45,6 +51,7 @@ const App = () => {
                 handleSubmit={handleSubmit}
             />
             <h3>{errorDisplay}</h3>
+            <h3>{loader}</h3>
             <RepoList repo={repo} />
         </div>
     )

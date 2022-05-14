@@ -22,7 +22,6 @@ const App = () => {
             })
 
             .catch((error) => {
-                console.log('invalid username', error.message);
                 setErrorMsg(`User not found. Check username`);
                 setRepo([]);
                 setisLoading(false);
@@ -49,7 +48,7 @@ const App = () => {
 
             <h3>{errorDisplay}</h3>
             <h3>{loader}</h3>
-            <RepoList repo={repo} />
+            {repo.length > 1 ? <RepoList repo={repo} /> : <p> No repositories available</p>}
         </div>
     );
 };

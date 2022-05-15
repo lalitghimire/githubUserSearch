@@ -5,7 +5,7 @@ const RepoList = ({ repo }) => {
     return (
         <div className='liststyle'>
             <ul>
-                {repo.length !== 0 &&
+                {repo.length !== 0 ? (
                     repo.map((repo) => (
                         <li key={repo.id}>
                             {repo.name}{' '}
@@ -14,7 +14,10 @@ const RepoList = ({ repo }) => {
                                 link{' '}
                             </a>
                         </li>
-                    ))}
+                    ))
+                ) : (
+                    <p> No repositories available</p>
+                )}
             </ul>
         </div>
     );

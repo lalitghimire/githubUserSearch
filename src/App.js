@@ -8,6 +8,7 @@ const App = () => {
     const [repo, setRepo] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
     const [isLoading, setisLoading] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     // event handler for form submission
     const handleSubmit = (event) => {
@@ -17,6 +18,7 @@ const App = () => {
             .get(`https://api.github.com/users/${searchName}/repos`)
             .then((response) => {
                 setRepo(response.data);
+                setIsSubmitted(true);
                 setisLoading(false);
                 setErrorMsg('');
             })
@@ -25,6 +27,7 @@ const App = () => {
                 setErrorMsg(`User not found. Check username`);
                 setRepo([]);
                 setisLoading(false);
+                setIsSubmitted(false);
             });
     };
 
@@ -48,7 +51,7 @@ const App = () => {
 
             <h3>{errorDisplay}</h3>
             <h3>{loader}</h3>
-            {repo.length > 1 ? <RepoList repo={repo} /> : <p> No repositories available</p>}
+            {isSubmitted && <RepoList repo={repo} />}
         </div>
     );
 };

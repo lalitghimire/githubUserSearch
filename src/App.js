@@ -29,6 +29,7 @@ const App = () => {
                 setisLoading(false);
                 setIsSubmitted(false);
             });
+        event.target.reset();
     };
 
     //  display error message
